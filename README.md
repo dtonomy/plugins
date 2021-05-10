@@ -27,4 +27,4 @@ Output: <br />
 
 ### Installation
 ` npm i asn_information --save `<br />
-`npm i asn_information
+`npm i asn_information`
