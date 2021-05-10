@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# plugins
-3rd Party Integrations 
+# ASN Node
 =======
 # What is this used for?
 It's a node to help users get ASN information when they enter IPs. 
@@ -25,4 +23,3 @@ Output: <br />
 # Installation
 ` npm i asn_information --save `<br />
 `npm i asn_information`
->>>>>>> c6a0f5a (first commit)
