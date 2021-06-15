@@ -1,24 +1,29 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon May 10 16:05:32 2021
+
+@author: jasmine
+"""
+import ipwhois
+def install(name):
+    ipwhois.call(['pip', 'install', name])
+
 import json
 from ipwhois.net import Net
 from ipwhois.asn import IPASN
 from ipwhois.asn import ASNOrigin
 
-result = []
-
-def enterSingleIp(net):
-    net = Net(net)
-    obj = IPASN(net)
+def asn(ip):
+    ip = Net(ip)
+    obj = IPASN(ip)
     res = obj.lookup()
     return res
 
-def enterMultipleIp(nets):
-    result = []
-    for net in nets:
-        result.append(enterSingleIp(net))
-    return result
+config = json.loads(input())
+allData = json.loads(input())
+result = []
 
-allData, config = {}, {}
-allData['payload'] = '2603:8001:2443:ec00:d069:52f:16cc:3ae5'
 # Payload by default
 if "payload" in allData:
     msgBody = allData['payload']
@@ -31,6 +36,7 @@ if "input" in config:
             allData['payload'] = input_path + " does not exist in msg"
             print(json.dumps(allData))
             exit()
+
 # Check output path
 if "output" in config and config['output'] != "":
     output_path = config['output']
@@ -38,17 +44,11 @@ else:
     output_path = 'payload'
 try:
     if(type(msgBody) is str):
-        # allData[output_path] = queryIp(msgBody.strip())
-        allData[output_path] = single(msgBody.strip())
+        allData[output_path] = asn(msgBody.strip())
     elif(type(msgBody) is list):
         for ip in msgBody:
-            # result.append(queryIp(ip.strip()))
-            result.append(multiple(ip.strip()))
+            result.append(asn(ip.strip()))
         allData[output_path] = result
-    elif "ip" in config and len(config['ip']) > 0:
-        msgBody = config['ip']
-        # allData[output_path] = queryIp(msgBody.strip())
-        allData[output_path] = single(msgBody.strip())
     else:
         allData[output_path] = "Input type error."
 except Exception as e:

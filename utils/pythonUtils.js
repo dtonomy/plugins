@@ -1,7 +1,6 @@
-const status = require('./status.js.js')
-const {
-	spawn
-} = require('child_process')
+const BJSON = require('buffer-json')
+const status = require('./status.js')
+const { spawn } = require('child_process')
 const safeJsonStringify = require('safe-json-stringify'); 
 
 //use 'python3' on linux and 'python' on anything else
@@ -9,28 +8,31 @@ const pcmd = process.platform === 'linux' ? 'python3' : 'python'
 
 //initialize child process
 const initProc = (node) => {
-	node.proc = spawn(pcmd, [node.file], ['pipe', 'pipe', 'pipe'])
-	//ref: https://stackoverflow.com/questions/50787082/sending-json-from-python-to-node-via-child-process-gets-truncated-if-too-long-h
-	let result = ''
-	var temp_msg = node.msg
+	// 0 Use parent's stdin for child 
+	// reference: https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options
+	node.proc = spawn(pcmd, ['-c', node.script], [0, 'pipe', 'pipe'])
 
-	// accumulate data until it ends
+	let result = ''
+	var temp_msg = node.msg  
+
+ 	// accumulate data until it ends
 	node.proc.stdout.on('data', (data) => {
-		result += data.toString()  
+		result += data.toString()
 	})
+	
 	node.proc.stdout.on('end', () => {
 		node.status(status.DONE)
 		try {
-			node.msg = JSON.parse(result.toString().trim())
+		   node.msg = BJSON.parse(result.toString().trim())
 		} catch (err) {
 			node.msg = result.toString().trim()
 		}
 		// Check for "req" and "res" in "msg" and explicitly pass the values
-		if (typeof node.msg["req"] !== 'undefined') {  
+		if (typeof node.msg["req"] !== 'undefined') { 
 			// the variable is defined
 			node.msg["req"] = temp_msg["req"]
 		}
-		if (typeof node.msg["res"] !== 'undefined') {   
+		if (typeof node.msg["res"] !== 'undefined') {  
 			// the variable is defined
 			node.msg["res"] = temp_msg["res"]		
 		}
@@ -46,21 +48,23 @@ const initProc = (node) => {
 	//handle errors
 	node.proc.stderr.on('data', (data) => {
 		node.status(status.ERROR)
+
 		try {
-			node.msg = JSON.parse(data.toString())
-		} catch (err) {
+			node.msg = BJSON.parse(data.toString())
+		}
+		catch (err) {
 			node.msg = data.toString()
 		}
 		// Check for "req" and "res" in "msg" and explicitly pass the values
-		if (typeof node.msg["req"] !== 'undefined') {  
+		if (typeof node.msg["req"] !== 'undefined') { 
 			// the variable is defined
 			node.msg["req"] = temp_msg["req"]
 		}
-		if (typeof node.msg["res"] !== 'undefined') {   
+		if (typeof node.msg["res"] !== 'undefined') {  
 			// the variable is defined
 			node.msg["res"] = temp_msg["res"]		
 		}
-        
+
 		// capture error message
 		error_msg = node.msg.split(",")
 
@@ -70,7 +74,6 @@ const initProc = (node) => {
 		if (node.wires.length > 1) {
 			msg = [null, msg]
 		}		
-		
 		node.send(msg) 
 	})
 
@@ -79,14 +82,13 @@ const initProc = (node) => {
 		node.proc = null
 	})
 
-	//send node configurations to child
-	node.proc.stdin.write(safeJsonStringify(node.config) + '\n') // // JSON.stringify replaced by safeJsonStringify to avoid circular reference errors 
+
 }
 
 //send payload as json to python script
 const python = (node) => {
 	initProc(node)
-	node.proc.stdin.write(safeJsonStringify(node.msg) + '\n')  // // JSON.stringify replaced by safeJsonStringify to avoid circular reference errors 
+	node.proc.stdin.write(safeJsonStringify(node.msg) + '\n')   // JSON.stringify replaced by safeJsonStringify to avoid circular reference errors 
 }
 
 module.exports = {
@@ -98,7 +100,8 @@ module.exports = {
 			if (ints.some(isNaN)) {
 				ints = null
 			}
-		} finally {
+		}
+		finally {
 			return ints
 		}
 	},
@@ -125,10 +128,11 @@ module.exports = {
 
 		//handle input
 		node.on('input', (msg) => {
-			// if the node requires preprocessing of message, call preMsg
+			//if the node requires preprocessing of message, call preMsg
 			if (node.preMsg != undefined) {
 				node.preMsg(msg, handle)
-			} else {
+			}
+			else {
 				handle(msg)
 			}
 		})
