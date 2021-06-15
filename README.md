@@ -6,7 +6,8 @@ Address needs to be an IPv4 or IPv6 format.
 
 # Example
 ```
-The node expects input and output from msg.payload by default but if you want to specify another path you can specify it in the Input/Output field.
+The node expects input and output from msg.payload by default,
+but if you want to specify another path you can specify it in the Input/Output field.
 
 Input:
 '2001:43f8:7b0::'
