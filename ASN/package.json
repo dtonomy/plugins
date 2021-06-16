@@ -1,6 +1,6 @@
 {
   "name": "asn_information",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Check ASN information for entered IP addresses",
   "main": "asn_information.js",
   "node-red": {
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dtonomy/plugins/tree/asn"
+    "url": "git+https://github.com/dtonomy/plugins/asn/ASN"
   },
   "keywords": [
     "asn"
   ],
   "author": "DTonomy",
   "license": "apache-2.0",
-  "homepage": "https://github.com/dtonomy/plugins/tree/asn#readme",
+  "homepage": "https://github.com/dtonomy/plugins/asn/ASN#readme",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
     "safe-json-stringify": "^1.2.0"
