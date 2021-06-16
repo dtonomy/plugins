@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon May 10 16:05:32 2021
 
-@author: jasmine
-"""
 import ipwhois
 def install(name):
     ipwhois.call(['pip', 'install', name])
