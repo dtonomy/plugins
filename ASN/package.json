@@ -24,7 +24,7 @@
   ],
   "author": "DTonomy",
   "license": "apache-2.0",
-  "homepage": "https://github.com/dtonomy/plugins/blob/main/README.md",
+  "homepage": "https://github.com/dtonomy/plugins/blob/main/ASN/README.md",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
     "safe-json-stringify": "^1.2.0"
