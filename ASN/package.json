@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dtonomy/plugins/asn"
+    "url": "git+https://github.com/dtonomy/plugins/blob/main/ASN"
   },
   "keywords": [
     "asn"
   ],
   "author": "DTonomy",
   "license": "apache-2.0",
-  "homepage": "https://github.com/dtonomy/plugins/asn#readme",
+  "homepage": "https://github.com/dtonomy/plugins/blob/main/README.md",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
     "safe-json-stringify": "^1.2.0"
