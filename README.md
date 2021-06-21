@@ -5,6 +5,7 @@
 [![Apache-2.0 License][license-shield]][license-url]
 [![Website][website-shield]][website-url]
 [![Twitter][twitter-shield]][twitter-url]
+[![Youtube][youtube-shield]][youtube-url]
 
 
 
@@ -22,7 +23,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation-example">Installation Example</a></li>
+        <li><a href="#third-party-nodes-installation-example">Third Party Nodes Installation Example</a></li>
       </ul>
     </li>
     <li><a href="#list-of-nodes">List of Nodes</a></li>
@@ -35,7 +36,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-This project contains third-party nodes which are created by DTonomy to be used in the security automation process. 
+This project contains third-party nodes created by DTonomy to be used for automating security analysis and response. 
 
 ### Built With
 
@@ -47,38 +48,35 @@ This project contains third-party nodes which are created by DTonomy to be used 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To set up a local instance, please follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Install npm on your machine:  
 * npm
   ```sh
   npm install npm@latest -g
   ```
-To install Node-RED you can use the npm command that comes with node.js:
+
+Install Node-RED with this npm command that comes with node.js:
 * node-red
   ```sh
   sudo npm install -g --unsafe-perm node-red
   ```
 
 
-### Installation Example
-
-* Install the ASN package locally
-1. Clone the repo
-   ```sh
-   git clone https://github.com/dtonomy/plugins/tree/main/ASN
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-* Install the ASN package globally
+### Third Party Nodes Installation Example
+* Install ASN node:
    ```sh
    npm i asn_information
    ```
+  Now you should be able to run Node-red locally and use installed third party nodes.
+
+* Start Node-Red: 
+   ```sh
+   node-red
+   ```
+
 
 
 
@@ -137,6 +135,8 @@ To install Node-RED you can use the npm command that comes with node.js:
 * [VirusTotal](https://doc.dtonomy.com/automation.html#virustotal)
 * [Wazuh](https://doc.dtonomy.com/automation.html#wazuh)
 
+We are keeping publishing more Third Party Nodes. 
+To try out our free cloud version with full list of integrations, please request here: https://www.dtonomy.com/pricing-plans
 
 
 <!-- LICENSE -->
@@ -166,3 +166,5 @@ Project Link: [https://github.com/dtonomy/plugins](https://github.com/dtonomy/pl
 [website-url]: https://www.dtonomy.com
 [twitter-shield]: https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Fdtonomyinc%3Flang%3Den
 [twitter-url]: https://twitter.com/dtonomyinc?lang=en
+[youtube-shield]: https://img.shields.io/badge/-YouTube-red
+[youtube-url]: https://www.youtube.com/channel/UCo1Wao24rchAHkjpH4Tdetw
