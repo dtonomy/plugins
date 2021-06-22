@@ -83,6 +83,10 @@ Install Node-RED with this npm command that comes with node.js:
 
 <!-- LIST OF NODES -->
 ## List of Nodes
+We are keeping open sourcing more Third Party Nodes. 
+Here is a list of nodes built in DTonomy's cloud offerings. 
+To try out our free cloud offerings with full list of integrations, please request [here](https://www.dtonomy.com/pricing-plans/).
+
 * [Analysis](https://doc.dtonomy.com/automation.html#analysis)
 * [Alexa Ranking](https://doc.dtonomy.com/automation.html#alexa-ranking)
 * [ASN](https://doc.dtonomy.com/automation.html#asn)
@@ -134,9 +138,6 @@ Install Node-RED with this npm command that comes with node.js:
 * [URLScan.io](https://doc.dtonomy.com/automation.html#urlscan-io)
 * [VirusTotal](https://doc.dtonomy.com/automation.html#virustotal)
 * [Wazuh](https://doc.dtonomy.com/automation.html#wazuh)
-
-We are keeping publishing more Third Party Nodes. 
-To try out our free cloud version with full list of integrations, please request here: https://www.dtonomy.com/pricing-plans
 
 
 <!-- LICENSE -->
